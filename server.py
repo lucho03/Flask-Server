@@ -4,17 +4,7 @@ import random, json
 
 app = Flask(__name__)
 
-class User():    
-    def add(self, username, num):
-        self.username=username
-        self.num=num
-    
-    def print(self):
-        return f"Name: {self.username}"
-    
-    def __str__(self):
-        return "Player " + str(self.num) + ": " + self.username
-
+from classes import User
 users = []
 num_users = 0
 
@@ -35,7 +25,7 @@ def players():
         global num_users
         num_users += 1
         user = User()
-        user.add(request.json["msg"], num_users)
+        user.add(request.json["playerName"], request.json["enemyName"], num_users)
         users.append(user)
         return "Post request!"
 
