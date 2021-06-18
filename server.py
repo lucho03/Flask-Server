@@ -16,11 +16,13 @@ def set_game():
     else:
         pass
 
-#@app.route("check_players", methods=['GET', 'POST'])
-#def check():
-#    for user in users:
-#        for enemy in users:
-#            if enemy.
+@app.route("/check_enemy/", methods=['GET', 'POST'])
+def check():
+    for user in users:
+        for enemy in users:
+            if enemy.username == user.enemy:
+                return "There is your enemy"
+    return "There isn't your enemy!"
 
 @app.route("/players/", methods=["GET", "POST"])
 def players():
