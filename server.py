@@ -16,6 +16,21 @@ def set_game():
     else:
         pass
 
+@app.route("/post_to/", methods=['GET', 'POST'])
+def post():
+    if request.method ==  "GET":
+        return render_template('browser_send.html')
+    
+    if request.method == "POST":
+        global num_users
+        num_users += 1
+        #user = User()
+        #user.add(request.json["playerName"], request.json["enemyName"], num_users, request.remote_addr)
+        #user.append(user)
+        print(request.json)
+        #name = request.form['name']
+        return "Post"
+
 @app.route("/check_enemy/", methods=['GET', 'POST'])
 def check():
     for user in users:
@@ -35,7 +50,6 @@ def players():
         user = User()
         user.add(request.json["playerName"], request.json["enemyName"], num_users, request.remote_addr)
         users.append(user)
-        print(request.remote_addr)
         return "Post request!"
 
 @app.route("/", methods=["GET", "POST"])
